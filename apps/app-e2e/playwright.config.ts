@@ -25,7 +25,7 @@ export default defineConfig({
   },
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'bun nx serve app',
+    command: 'bun start',
     url: 'http://localhost:4200',
     reuseExistingServer: !process.env['CI'],
     cwd: workspaceRoot,

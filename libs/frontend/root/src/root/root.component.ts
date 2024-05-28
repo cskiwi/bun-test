@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { derivedAsync } from 'ngxtension/derived-async';
@@ -8,10 +8,10 @@ import { derivedAsync } from 'ngxtension/derived-async';
   standalone: true,
   imports: [RouterModule, JsonPipe],
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  templateUrl: './root.component.html',
+  styleUrl: './root.component.scss',
 })
-export class AppComponent {
+export class RootComponent {
   private readonly httpClient = inject(HttpClient);
   movie = derivedAsync(() => this.httpClient.get(`/api/backend-test`));
 }
