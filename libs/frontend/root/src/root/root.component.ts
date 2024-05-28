@@ -8,10 +8,10 @@ import { derivedAsync } from 'ngxtension/derived-async';
   standalone: true,
   imports: [RouterModule, JsonPipe],
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  templateUrl: './root.component.html',
+  styleUrl: './root.component.scss',
 })
-export class AppComponent {
+export class RootComponent {
   private readonly httpClient = inject(HttpClient);
   movie = derivedAsync(() => this.httpClient.get(`/api/backend-test`));
 }
