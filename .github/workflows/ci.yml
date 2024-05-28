@@ -22,14 +22,17 @@ jobs:
         with:
           bun-version: latest
 
-      # Connect your workspace on nx.app and uncomment this to enable task distribution.
-      # The "--stop-agents-after" is optional, but allows idle agents to shut down once the "e2e-ci" targets have been requested
-      # - run: bunx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="e2e-ci"
-
       - run: bun install --no-cache
       - uses: nrwl/nx-set-shas@v4
 
-      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
-      # - run: bun nx-cloud record -- echo Hello World
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
       - run: bun nx affected -t lint test build
       - run: bun nx affected --parallel 1 -t e2e-ci
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
