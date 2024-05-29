@@ -24,7 +24,6 @@
           }
         ],
         "styles": [
-          "@angular/material/prebuilt-themes/magenta-violet.css",
           "apps/app/src/styles.scss"
         ],
         "externalDependencies": [
