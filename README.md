@@ -2,7 +2,14 @@
 
 ## Project Overview
 
-This project is a Angular (With SSR) + Nestjs monorepo using Nx. It is a full-stack application that demonstrates how to structure and manage frontend and backend applications within a single Nx workspace. The project is organized into two main applications:
+This project is a Angular (With SSR) + Nestjs monorepo using Nx. It is a full-stack application that demonstrates how to structure and manage frontend and backend applications within a single Nx workspace.
+
+## TODO
+Feel free to contribute to this project by creating a pull request. 
+
+- [ ] Check on how to build for bun runtime 
+- [ ] Pre rendering routes doesn't spin up the server, so the HTTP calls are not made.
+- [ ] Create a material included starter
 
 ## Directory Structure
 
@@ -87,3 +94,5 @@ To run end-to-end tests:
 ```bash
 nx e2e app-e2e
 ```
+
+
