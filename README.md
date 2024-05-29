@@ -8,7 +8,7 @@ This project is a Angular (With SSR) + Nestjs monorepo using Nx. It is a full-st
 Feel free to contribute to this project by creating a pull request. 
 
 - [ ] Check on how to build for bun runtime 
-- [ ] Pre rendering routes doesn't spin up the server, so the HTTP calls are not working.
+- [x] Pre rendering routes doesn't spin up the server, so the HTTP calls are not working.
       - Wouraround: Use full api url's (http://localhost:4200/api) instead of relative url's (/api)
       - And spin up the api before building
 - [ ] Create a material included starter

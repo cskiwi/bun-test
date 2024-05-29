@@ -13,5 +13,7 @@ import { derivedAsync } from 'ngxtension/derived-async';
 })
 export class RootComponent {
   private readonly httpClient = inject(HttpClient);
-  movie = derivedAsync(() => this.httpClient.get(`/api/backend-test`));
+  movie = derivedAsync(() =>
+    this.httpClient.get(`http://localhost:3000/api/backend-test`),
+  );
 }
