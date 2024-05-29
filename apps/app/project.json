@@ -37,7 +37,7 @@
           "class-validator"
         ],
         "scripts": [],
-        "prerender": false,
+        "prerender": true,
         "ssr": {
           "entry": "apps/app/server/server.ts"
         }
