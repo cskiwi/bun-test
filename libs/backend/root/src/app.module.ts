@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { BackendTestModule } from '@backend/test';
+import { BackendTestModule } from '@app/backend-test';
+import { RoutesGeneratorModule } from '@app/backend-routes-generator';
 
 @Module({
-  imports: [BackendTestModule],
+  imports: [BackendTestModule, RoutesGeneratorModule],
   controllers: [],
 })
 export class AppModule {}

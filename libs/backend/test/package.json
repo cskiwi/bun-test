@@ -1,5 +1,5 @@
 {
-  "name": "@backend/test",
+  "name": "@app/backend-test",
   "version": "0.0.1",
   "dependencies": {
     "tslib": "^2.3.0",

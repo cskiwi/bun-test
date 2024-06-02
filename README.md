@@ -72,6 +72,10 @@ To build the Angular application for production:
 bun run build
 ```
 
+This will run all the required build steps.
+I've included a routes.txt generator, so you can add the routes you want to pre-render in the `routes.txt` file.
+You can remove that library and build steps if you don't want to pre-render the routes.
+
 To run the Application:
 
 ```bash

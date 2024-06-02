@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@backend/test": ["libs/backend/test/src/index.ts"],
+      "@app/backend-test": ["libs/backend/test/src/index.ts"],
+      "@app/backend-routes-generator": [
+        "libs/backend/routes-generator/src/index.ts"
+      ],
       "@app/backend-root": ["libs/backend/root/src/index.ts"],
       "@app/frontend-root": ["libs/frontend/root/src/index.ts"]
     }

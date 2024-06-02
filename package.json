@@ -4,8 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx run-many -t serve -p tag:scope:app",
-    "build": "concurrently \"nx serve api\" \"bun run wait-and-build\" --kill-others --success last --kill-signal SIGINT",
-    "wait-and-build": "wait-on tcp:3000 && nx build app"
+    "build": "node scripts/build.js"
   },
   "private": true,
   "dependencies": {
