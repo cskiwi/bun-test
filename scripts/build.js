@@ -1,18 +1,24 @@
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 const fs = require('fs');
 
-// Function to run a shell command
-function runCommand(command) {
+// Function to run a shell command and return the process immediately
+function runCommand(command, args = []) {
+  const process = spawn(command, args);
+
+  process.stdout.on('data', (data) => {
+    console.log(data.toString());
+  });
+
+  process.stderr.on('data', (data) => {
+    console.error(data.toString());
+  });
+  return process;
+}
+
+// Function to run a shell command and wait for it to complete
+function runCommandAndWait(command, args = []) {
   return new Promise((resolve, reject) => {
-    const process = exec(command);
-
-    process.stdout.on('data', (data) => {
-      console.log(data);
-    });
-
-    process.stderr.on('data', (data) => {
-      console.error(data);
-    });
+    const process = runCommand(command, args);
 
     process.on('close', (code) => {
       if (code === 0) {
@@ -20,6 +26,10 @@ function runCommand(command) {
       } else {
         reject(`Command failed with code ${code}`);
       }
+    });
+
+    process.on('error', (error) => {
+      reject(`Command failed with error ${error}`);
     });
   });
 }
@@ -65,10 +75,15 @@ async function main() {
   }
 
   try {
-    console.log('Starting server...');
-    runCommand('nx serve api');
+    console.log('Build server...');
+    await runCommandAndWait('nx', ['build', 'api']);
 
-    console.log(`Waiting for server to be ready on port ${port}...`);
+    console.log('Server build completed. Starting server...');
+    const apiProcess = runCommand('node', ['dist/apps/api/main.js']);
+
+    console.log(
+      `Waiting for server ${apiProcess.pid} to be ready on port ${port}...`,
+    );
     await waitForServer(port);
 
     console.log('Server is ready. Fetching routes...');
@@ -77,9 +92,11 @@ async function main() {
     console.log('Routes saved to routes.txt');
 
     console.log('Building app...');
-    await runCommand('nx build app');
-
+    await runCommandAndWait('nx', ['build', 'app']);
     console.log('App build completed');
+
+    console.log('Stopping server...');
+    apiProcess.kill('SIGINT');
 
     process.exit(0);
   } catch (error) {
