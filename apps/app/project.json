@@ -23,9 +23,10 @@
             "input": "apps/app/public"
           }
         ],
-        "styles": [
-          "apps/app/src/styles.scss"
-        ],
+        "styles": ["apps/app/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/"]
+        },
         "externalDependencies": [
           "@nestjs/microservices",
           "@nestjs/microservices/microservices-module",
@@ -36,7 +37,9 @@
           "class-validator"
         ],
         "scripts": [],
-        "prerender": true,
+        "prerender": {
+          "routesFile": "routes.txt"
+        },
         "ssr": {
           "entry": "apps/app/server/server.ts"
         }

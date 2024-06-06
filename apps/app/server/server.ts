@@ -9,7 +9,7 @@ import { AppModule } from '@app/backend-root';
 import { ExpressAdapter } from '@nestjs/platform-express';
 
 // The Express app is exported so that it can be used by serverless Functions.
-export async function app(): Promise<express.Express> {
+export async function app() {
   const server = express();
   const serverDistFolder = dirname(fileURLToPath(import.meta.url));
   const browserDistFolder = resolve(serverDistFolder, '../browser');
