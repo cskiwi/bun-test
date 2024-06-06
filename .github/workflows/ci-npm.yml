@@ -29,8 +29,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - run: npm nx affected -t lint test build
-      - run: npm nx affected --parallel 1 -t e2e-ci
+      - run: npx nx affected -t lint test build
+      - run: npx nx affected --parallel 1 -t e2e-ci
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:

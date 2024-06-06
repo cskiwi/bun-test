@@ -1,10 +1,10 @@
 name: CI
 
-# on:
-#   push:
-#     branches:
-#       - master
-#   pull_request:
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 permissions:
   actions: read
@@ -26,7 +26,7 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: bunx playwright install --with-deps
 
       - run: bun nx affected -t lint test build
       - run: bun nx affected --parallel 1 -t e2e-ci
