@@ -22,7 +22,7 @@ jobs:
         with:
           bun-version: latest
 
-      - run: bun install --no-cache
+      - run: bun install --frozen-lockfile --ignore-scripts
       - uses: nrwl/nx-set-shas@v4
 
       - name: Install Playwright Browsers
