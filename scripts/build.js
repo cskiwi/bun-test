@@ -2,8 +2,8 @@ const { spawn } = require('child_process');
 const fs = require('fs');
 
 // Function to run a shell command and return the process immediately
-function runCommand(command, args = []) {
-  const process = spawn(command, args);
+function runCommand(command, args = [], options = {}) {
+  const process = spawn(command, args, options);
 
   process.stdout.on('data', (data) => {
     console.log(data.toString());
@@ -68,7 +68,7 @@ async function getAndSaveRoutes(port, filePath) {
 
 // Main function to run the tasks
 async function main() {
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 5000;
   if (!port) {
     console.error('Environment variable PORT is not set');
     process.exit(1);
@@ -85,6 +85,7 @@ async function main() {
       `Waiting for server ${apiProcess.pid} to be ready on port ${port}...`,
     );
     await waitForServer(port);
+    process.env.BASE_URL = `http://localhost:${port}`;
 
     console.log('Server is ready. Fetching routes...');
     await getAndSaveRoutes(port, 'routes.txt');
@@ -92,7 +93,7 @@ async function main() {
     console.log('Routes saved to routes.txt');
 
     console.log('Building app...');
-    await runCommandAndWait('nx', ['build', 'app']);
+    await runCommandAndWait(`nx`, ['build', 'app']);
     console.log('App build completed');
 
     console.log('Stopping server...');
