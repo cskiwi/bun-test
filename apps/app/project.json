@@ -28,10 +28,10 @@
           "includePaths": ["node_modules/"]
         },
         "externalDependencies": [
-          "@nestjs/microservices",
-          "@nestjs/microservices/microservices-module",
-          "@nestjs/websockets",
-          "@nestjs/websockets/socket-module",
+          "@nestjs/*",
+          "jwks-rsa",
+          "moment",
+          "dotenv",
           "cache-manager",
           "class-transformer",
           "class-validator"
